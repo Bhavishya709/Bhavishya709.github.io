@@ -35,12 +35,6 @@
       --divine-gold: #ffdf6b;
     }
 
-    @property --gradient-angle {
-      syntax: "<angle>";
-      initial-value: 0deg;
-      inherits: false;
-    }
-
     html {
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
@@ -56,6 +50,7 @@
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
+      cursor: auto; /* 🔥 FIXED: Normal cursor on body */
     }
 
     body.loaded h1,
@@ -71,46 +66,55 @@
       transform: none !important;
     }
 
-    * {
-      cursor: none;
+    /* ========== PREMIUM CURSOR (Desktop Only) ========== */
+    @media (min-width: 769px) {
+      * {
+        cursor: none;
+      }
+
+      a, button {
+        cursor: none !important;
+      }
+
+      .cursor {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--neon-primary);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.15s ease;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: difference;
+      }
+
+      .cursor-follower {
+        width: 8px;
+        height: 8px;
+        background: var(--neon-primary);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.1s ease;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px var(--neon-primary);
+      }
+
+      .cursor.expand {
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 240, 255, 0.1);
+        border-color: var(--neon-secondary);
+      }
     }
 
-    a, button, [onclick] {
-      cursor: none !important;
-    }
-
-    .cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--neon-primary);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: all 0.15s ease;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: difference;
-      backdrop-filter: invert(1);
-    }
-
-    .cursor-follower {
-      width: 8px;
-      height: 8px;
-      background: var(--neon-primary);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: all 0.1s ease;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 20px var(--neon-primary);
-    }
-
-    .cursor.expand {
-      width: 60px;
-      height: 60px;
-      background: rgba(0, 240, 255, 0.1);
-      border-color: var(--neon-secondary);
+    @media (max-width: 768px) {
+      .cursor,
+      .cursor-follower {
+        display: none !important;
+      }
     }
 
     .grain-overlay {
@@ -504,6 +508,7 @@
       perspective: 1000px;
     }
 
+    /* 🔥 FIXED: Made entire card a clickable link */
     .contact-card {
       background: var(--card-bg);
       backdrop-filter: blur(20px) saturate(180%);
@@ -517,6 +522,9 @@
       transform: translateY(30px);
       animation: cardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       box-shadow: var(--shadow-premium);
+      display: block;
+      text-decoration: none;
+      color: inherit;
     }
 
     .contact-card::before {
@@ -598,6 +606,7 @@
       filter: drop-shadow(0 0 20px currentColor);
       display: inline-block;
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
     }
 
     .contact-card:hover .card-icon {
@@ -615,39 +624,17 @@
       display: flex;
       align-items: center;
       gap: 0.8rem;
+      pointer-events: none;
     }
 
-    /* 🔥 UPDATED: Card links now point to separate pages */
-    .contact-card a {
+    .contact-card .card-text {
       color: var(--text-primary);
       font-size: 1.15rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
       display: inline-block;
       position: relative;
       font-weight: 500;
-      word-break: break-all;
       font-family: 'JetBrains Mono', monospace;
-    }
-
-    .contact-card a::before {
-      content: '→';
-      position: absolute;
-      left: -30px;
-      opacity: 0;
-      transition: all 0.3s ease;
-      color: var(--neon-primary);
-    }
-
-    .contact-card a:hover {
-      color: var(--neon-primary);
-      transform: translateX(10px);
-      text-shadow: 0 0 20px var(--neon-primary);
-    }
-
-    .contact-card a:hover::before {
-      opacity: 1;
-      left: -25px;
+      pointer-events: none;
     }
 
     /* Divine Section */
@@ -914,6 +901,7 @@
       color: var(--text-secondary);
       transition: all 0.3s ease;
       font-size: 1.2rem;
+      text-decoration: none;
     }
 
     .social-icon:hover {
@@ -1048,15 +1036,6 @@
       .social-links {
         justify-content: center;
       }
-
-      .cursor,
-      .cursor-follower {
-        display: none;
-      }
-
-      * {
-        cursor: auto !important;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1127,7 +1106,7 @@
 
   <div class="divider"></div>
 
-  <!-- 🔥 UPDATED: Each card now links to its own page -->
+  <!-- 🔥 FIXED: Cards are now fully clickable links -->
   <section id="contact">
     <div class="container">
       <div class="section-header">
@@ -1136,80 +1115,79 @@
       </div>
 
       <div class="contact-grid">
-        <div class="contact-card">
+        <a href="email.html" class="contact-card">
           <div class="card-icon">📧</div>
           <h3>Email</h3>
-          <a href="email.html">Explore Email Portal →</a>
-        </div>
+          <div class="card-text">Explore Email Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="whatsapp.html" class="contact-card">
           <div class="card-icon">💬</div>
           <h3>WhatsApp</h3>
-          <a href="whatsapp.html">Explore WhatsApp Portal →</a>
-        </div>
+          <div class="card-text">Explore WhatsApp Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="riot.html" class="contact-card">
           <div class="card-icon">🎮</div>
           <h3>Riot Games</h3>
-          <a href="riot.html">Explore Riot Portal →</a>
-        </div>
+          <div class="card-text">Explore Riot Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="rockstar.html" class="contact-card">
           <div class="card-icon">🕹️</div>
           <h3>Rockstar</h3>
-          <a href="rockstar.html">Explore Rockstar Portal →</a>
-        </div>
+          <div class="card-text">Explore Rockstar Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="snapchat.html" class="contact-card">
           <div class="card-icon">👻</div>
           <h3>Snapchat</h3>
-          <a href="snapchat.html">Explore Snapchat Portal →</a>
-        </div>
+          <div class="card-text">Explore Snapchat Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="steam.html" class="contact-card">
           <div class="card-icon">🎯</div>
           <h3>Steam</h3>
-          <a href="steam.html">Explore Steam Portal →</a>
-        </div>
+          <div class="card-text">Explore Steam Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="instagram.html" class="contact-card">
           <div class="card-icon">📸</div>
           <h3>Instagram</h3>
-          <a href="instagram.html">Explore Instagram Portal →</a>
-        </div>
+          <div class="card-text">Explore Instagram Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="tradingview.html" class="contact-card">
           <div class="card-icon">📈</div>
           <h3>TradingView</h3>
-          <a href="tradingview.html">Explore TradingView Portal →</a>
-        </div>
+          <div class="card-text">Explore TradingView Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="xbox.html" class="contact-card">
           <div class="card-icon">🎮</div>
           <h3>Xbox Live</h3>
-          <a href="xbox.html">Explore Xbox Portal →</a>
-        </div>
+          <div class="card-text">Explore Xbox Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="discord.html" class="contact-card">
           <div class="card-icon">💬</div>
           <h3>Discord</h3>
-          <a href="discord.html">Explore Discord Portal →</a>
-        </div>
+          <div class="card-text">Explore Discord Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="chess.html" class="contact-card">
           <div class="card-icon">♟️</div>
           <h3>Chess.com</h3>
-          <a href="chess.html">Explore Chess Portal →</a>
-        </div>
+          <div class="card-text">Explore Chess Portal →</div>
+        </a>
 
-        <div class="contact-card">
+        <a href="duolingo.html" class="contact-card">
           <div class="card-icon">🦉</div>
           <h3>Duolingo</h3>
-          <a href="duolingo.html">Explore Duolingo Portal →</a>
-        </div>
+          <div class="card-text">Explore Duolingo Portal →</div>
+        </a>
       </div>
 
-      <!-- Divine "Know More" Link -->
       <div class="divine-section">
         <div class="divine-rays"></div>
         <a href="about-identity.html" class="divine-link">
@@ -1279,6 +1257,8 @@
       const cursor = document.querySelector('.cursor');
       const follower = document.querySelector('.cursor-follower');
 
+      if (!cursor || !follower) return;
+
       let mouseX = 0, mouseY = 0;
       let cursorX = 0, cursorY = 0;
       let followerX = 0, followerY = 0;
@@ -1306,7 +1286,7 @@
 
       animateCursor();
 
-      document.querySelectorAll('a, button, [onclick], .contact-card').forEach(el => {
+      document.querySelectorAll('a, button, .contact-card').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
       });
