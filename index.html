@@ -4,157 +4,162 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   
-  <title>Bhavishya Parjapati | Legacy Archive | Go to Official Console</title>
-  <meta name="title" content="Bhavishya Parjapati | Legacy Site">
-  <meta name="description" content="ARCHIVE: This is the legacy portfolio of Bhavishya Parjapati. The Official Digital Architect Console has moved to bhvsy.github.io.">
-  <meta name="keywords" content="Bhavishya Parjapati, Bhavishya Parjapati Legacy, Bhavishya Parjapati Archive, Bhvsy">
-  <meta name="author" content="Bhavishya Parjapati">
-  <meta name="robots" content="index, follow">
+  <title>Bhavishya Parjapati | Moved to New Website</title>
+  <meta name="description" content="Bhavishya Parjapati has moved to a new portfolio. Click to visit the official website.">
   
   <link rel="canonical" href="https://bhvsy.github.io/">
   
-  <meta name="theme-color" content="#ff0000">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ========== RED ALERT THEME ========== */
-    :root {
-      --alert-color: #ff003c;
-      --text-primary: #ffffff;
-      --bg-primary: #030712;
-      --card-bg: rgba(20, 0, 0, 0.8);
-      --border: rgba(255, 0, 60, 0.3);
-    }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+
     body {
-      background-color: #000;
-      color: #fff;
       font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
       height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
+      /* Friendly Gradient Background */
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      overflow: hidden;
+      padding: 20px;
     }
 
-    /* BACKGROUND FX */
-    .grid-bg {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: 
-        linear-gradient(rgba(255, 0, 60, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 0, 60, 0.1) 1px, transparent 1px);
-      background-size: 50px 50px;
-      z-index: -1;
-      opacity: 0.3;
+    /* Floating Bubbles Animation */
+    .bg-shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+      z-index: 0;
     }
-    
-    /* MIGRATION ALERT CARD */
-    .migration-card {
-      background: rgba(10, 0, 0, 0.9);
-      border: 2px solid var(--alert-color);
+    .shape1 { width: 300px; height: 300px; top: -50px; left: -50px; }
+    .shape2 { width: 400px; height: 400px; bottom: -100px; right: -50px; animation-delay: -5s; }
+
+    @keyframes float {
+      0% { transform: rotate(0deg) translate(0, 0); }
+      50% { transform: rotate(180deg) translate(50px, 50px); }
+      100% { transform: rotate(360deg) translate(0, 0); }
+    }
+
+    /* The Friendly Card */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
       padding: 3rem 2rem;
-      border-radius: 20px;
+      border-radius: 24px;
       text-align: center;
-      max-width: 600px;
-      width: 90%;
-      box-shadow: 0 0 50px rgba(255, 0, 60, 0.2);
-      animation: pulseBorder 2s infinite;
-      backdrop-filter: blur(20px);
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
       z-index: 10;
+      position: relative;
+      backdrop-filter: blur(10px);
+      animation: popIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes pulseBorder {
-      0% { box-shadow: 0 0 20px rgba(255, 0, 60, 0.1); }
-      50% { box-shadow: 0 0 40px rgba(255, 0, 60, 0.4); }
-      100% { box-shadow: 0 0 20px rgba(255, 0, 60, 0.1); }
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      color: var(--alert-color);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: 1.8rem;
+      color: #2d3748;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
     }
 
     p {
-      color: #ccc;
-      margin-bottom: 2rem;
+      color: #718096;
       line-height: 1.6;
+      margin-bottom: 2rem;
     }
 
-    .btn-main {
+    .btn {
       display: inline-block;
-      background: var(--alert-color);
-      color: #fff;
-      padding: 1rem 2rem;
-      border-radius: 5px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       text-decoration: none;
-      font-weight: bold;
-      font-family: 'Space Grotesk', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s;
-      border: 1px solid var(--alert-color);
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3);
     }
 
-    .btn-main:hover {
-      background: transparent;
-      box-shadow: 0 0 30px var(--alert-color);
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(118, 75, 162, 0.4);
     }
 
-    .footer-note {
-      margin-top: 2rem;
+    .loader {
+      margin-top: 1.5rem;
       font-size: 0.8rem;
-      color: #666;
+      color: #a0aec0;
     }
 
-    /* SEO TEXT (HIDDEN FROM VIEW BUT SEEN BY GOOGLE) */
-    .seo-ghost {
-      position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;
-    }
+    /* Hidden SEO text */
+    .seo-ghost { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
   </style>
 </head>
 <body>
 
-  <div class="grid-bg"></div>
+  <div class="bg-shape shape1"></div>
+  <div class="bg-shape shape2"></div>
 
-  <div class="migration-card">
-    <h1>⚠ SYSTEM MIGRATED</h1>
+  <div class="card">
+    <div class="icon">🚀</div>
+    <h1>I've Moved to a New Home!</h1>
     <p>
-      The digital entity known as <strong>Bhavishya Parjapati</strong> has moved to a new secure mainframe.
-      <br><br>
-      This legacy archive is no longer active. All operations, trading data, and contact portals have been transferred to the new Official Console.
+      Hello! You are visiting my old portfolio. 
+      <br>
+      I have built a brand new, advanced experience for you. 
+      <br>
+      Come check it out!
     </p>
 
-    <a href="https://bhvsy.github.io/" class="btn-main">
-      ACCESS OFFICIAL CONSOLE (BHVSY)
+    <a href="https://bhvsy.github.io/" class="btn">
+      Visit New Website
     </a>
 
-    <div class="footer-note">
-      REDIRECTING TO BHVSY.GITHUB.IO
+    <div class="loader">
+      Redirecting in <span id="countdown">5</span> seconds...
     </div>
   </div>
 
   <div class="seo-ghost">
-    <h2>Bhavishya Parjapati Legacy</h2>
-    <p>This is the former website of Bhavishya Parjapati. Bhavishya Parjapati is a Digital Architect and Cyber Entity. He is from India (Hisar). He is a student, trader, and developer.</p>
-    <a href="https://bhvsy.github.io/">Bhavishya Parjapati Official Website</a>
-    <a href="https://bhvsy.github.io/">Bhvsy OS</a>
+    Bhavishya Parjapati has moved. This is the old site.
+    Please visit the new official website for Digital Architect Bhavishya Parjapati (Bhvsy).
+    From Hisar, India.
   </div>
 
   <script>
-    // OPTIONAL: AUTO REDIRECT AFTER 10 SECONDS
-    setTimeout(() => {
-      window.location.href = "https://bhvsy.github.io/";
-    }, 10000);
+    // Friendly Countdown
+    let seconds = 5;
+    const countSpan = document.getElementById('countdown');
+    
+    const timer = setInterval(() => {
+      seconds--;
+      countSpan.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = "https://bhvsy.github.io/";
+      }
+    }, 1000);
   </script>
 
 </body>
